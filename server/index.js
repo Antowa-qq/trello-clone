@@ -1,20 +1,20 @@
 const express = require("express");
 const routes = require("./routes");
 const mongoose = require("mongoose");
+const {  MONGO_URI } = require("./config");
 
 const app = express();
 
-app.use(express.json({ extended: true }));
+app.use(express.json({ extended: true })); // для парсинга json-а, который прилетает в запросе
 app.use("/", routes);
+
+const PORT = process.env.PORT || 5000;
 
 const start = async () => {
   try {
-    await mongoose.connect(
-      "mongodb+srv://antowa:123456789aa@cluster0.eadar.mongodb.net/trello-clone?retryWrites=true&w=majority",
-      { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
-    );
+    await mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 
-    app.listen(5000, () => {
+    app.listen(PORT, () => {
       console.log(`App has been started on poort 5000`);
     });
   } catch (e) {
@@ -22,7 +22,5 @@ const start = async () => {
     process.exit(1);
   }
 };
-
-// mongodb+srv://antowa:admin:123456789aa@cluster0.eadar.mongodb.net/trello-clone?retryWrites=true&w=majority
 
 start();

@@ -6,4 +6,4 @@ const BoardSchema = new Schema({
   lists: [{ type: Schema.Types.ObjectId, ref: "lists" }],
 });
 
-module.exports = Board = model("board", BoardSchema);
+module.exports = model("board", BoardSchema);
