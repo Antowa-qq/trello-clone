@@ -5,10 +5,14 @@
 }
 body {
   font-size: 10px;
+  font-family: "Roboto", sans-serif;
+  height: 100vh;
+}
+#root {
+  height: 100%;
+  font-size: 1.6em;
 }
 .container {
-  height: 100vh;
-  background: #99ccff;
-  font-family: "Roboto", sans-serif;
+  // background: #99ccff;
   font-size: 1.6em;
 }

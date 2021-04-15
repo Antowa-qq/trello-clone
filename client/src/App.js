@@ -1,8 +1,13 @@
+import { Container } from "@material-ui/core";
+import { BrowserRouter as Router } from "react-router-dom";
+import routes from "./routes";
 import "./style.scss";
 
 function App() {
   return (
-    <div className="container"></div>
+    <Router>
+      <Container>{routes}</Container>
+    </Router>
   );
 }
 
