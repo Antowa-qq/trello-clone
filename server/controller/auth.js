@@ -7,7 +7,6 @@ const User = require("../model/User");
 
 const signin = async (req, res) => {
   try {
-      
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
@@ -42,7 +41,10 @@ const signup = async (req, res) => {
     user.password = await bcrypt.hash(password, 7);
 
     await user.save();
-    res.status(200).json({ message: "User created." });
+    
+    const token = generateAccessToken({ id: user._id, name: user.name, email: user.email });
+
+    res.status(200).json({ token });
   } catch (e) {
     console.log(e);
     res.status(400).json({ message: "sign up error." });
